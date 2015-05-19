@@ -59,6 +59,13 @@ var huffman = (function(){
       queue = tempQ;
     }
 
+    function getCodeFromNode(node code){
+      code = code || ""
+      
+    }
+
+
+
     self.encode = function(text){
       var frequencies = getFrecuencies(text)
       var leafs = getLeafs(frequencies)
@@ -72,7 +79,14 @@ var huffman = (function(){
         var newNode = getInternalNode(node0, node1);
         addNode(queue, newNode);
       }
-      return queue;
+
+      _.each(leafs, function(leaf){
+
+
+      })
+
+
+      return leafs;
     }
 
     return self;
