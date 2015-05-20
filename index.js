@@ -9,6 +9,7 @@ var huffman = (function(){
 
     //Llamamos al modulo underscore el cual nos
     var _ = require('underscore');
+    var ABC =  require('./ABC.js')
 
 
     /**
@@ -77,6 +78,21 @@ var huffman = (function(){
       return code
     }
 
+    function getTextFromBinaryS(binText, huffmanTable){
+         var text = ''
+         var cur = ''
+         binText.split("").forEach(function(val){
+           cur = cur + val
+          for(key in huffmanTable){
+            if(cur == huffmanTable[key]){
+                text += key
+                cur = ''
+            }
+          }
+        })
+        return text
+    }
+
     self.encode = function(text){
       var frequencies = getFrecuencies(text)
       var leafs = getLeafs(frequencies)
@@ -90,24 +106,57 @@ var huffman = (function(){
         addNode(queue, newNode);
       }
 
-    var huffmanTable = _.map(leafs, function(leaf){
+      var huffmanTable = _.map(leafs, function(leaf){
           var key = leaf.key
           var code = getCodeFromNode(leaf)
           return [key, code]
       })
 
-      return _.object(huffmanTable)
+      hTable = _.object(huffmanTable)
+      var encodedText = text.split("").map(function(val){
+          return hTable[val]
+      }).join("")
+      //Normalize String
+      console.log(encodedText)
+      var fill = 8 - (encodedText.length % 8)
+      if(fill == 8)
+        fill = 0
+
+
+      console.log("Fill:"+fill)
+      fill += encodedText.length
+      var originalLen = encodedText.length
+      while(encodedText.length < fill){
+        console.log("Enlen"+encodedText.length)
+        console.log("fill"+fill)
+        encodedText = "0" + encodedText
+      }
+
+      return {'huffmanTable':hTable,  'encodedText':ABC.toAscii(encodedText), fill:originalLen}
     }
+
+
+    self.decode = function(bytecode, huffmanTable, fill){
+      var encodedText = ABC.toBinary(bytecode,0)
+      var subfill = encodedText.length - fill
+      encodedText = encodedText.substring(subfill)
+      console.log(encodedText)
+      return getTextFromBinaryS(encodedText, huffmanTable)
+
+
+
+    }
+
+
     return self;
 }());
 
 var text = "abracadabra";
 console.log("Original Text:"+text)
 console.log("huffman Table")
-var huffmanTable = huffman.encode(text)
-console.log(huffmanTable);
-var encodedText = text.split("").map(function(val,index){
-    return huffmanTable[val]
-}).join("")
-console.log("EncodedText:")
-console.log(encodedText)
+var huffmanEncode = huffman.encode(text)
+console.log(huffmanEncode.huffmanTable);
+console.log("EncodedBytes:")
+console.log(huffmanEncode.encodedText)
+console.log("DecodedBytes:")
+console.log(huffman.decode(huffmanEncode.encodedText, huffmanEncode.huffmanTable, huffmanEncode.fill))
