@@ -4,6 +4,7 @@
   "description": "Huffman Encoding Chat with NodeJs",
   "main": "server.js",
   "dependencies": {
+    "client-firebase": "^1.0.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {},
