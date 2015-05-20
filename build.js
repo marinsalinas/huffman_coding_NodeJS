@@ -1727,14 +1727,4 @@ var huffman = (function(){
     return self;
 }());
 
-var text = "anita lava la tina en su casita";
-console.log("Original Text:"+text)
-console.log("huffman Table")
-var huffmanEncode = huffman.encode(text)
-console.log(huffmanEncode.huffmanTable);
-console.log("EncodedBytes:")
-console.log(huffmanEncode.encodedText)
-console.log("DecodedBytes:")
-console.log(huffman.decode(huffmanEncode.encodedText, huffmanEncode.huffmanTable, huffmanEncode.fill))
-
 },{"./ABC.js":1,"underscore":2}]},{},[3]);
