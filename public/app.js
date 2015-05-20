@@ -1915,7 +1915,7 @@ function displayChatMessage(name, text) {
 
       function displayChat(message){
 
-        var div = '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">'+message.name+'</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago</small></div><p>'+message.huffman.encodedText+'</p></div></li>'
+        var div = '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text='+message.name.charAt(0)+'" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">'+message.name+'</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago</small></div><p><strong>"'+message.huffman.encodedText+'"</strong></p><p>'+huffman.decode(message.huffman.encodedText, message.huffman.huffmanTable, message.huffman.fill)+'</p></div></li>'
       $("ul.chat").append(div)
       }
 
