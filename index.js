@@ -148,13 +148,3 @@ var huffman = (function(){
 
     return self;
 }());
-
-var text = "abracadabra";
-console.log("Original Text:"+text)
-console.log("huffman Table")
-var huffmanEncode = huffman.encode(text)
-console.log(huffmanEncode.huffmanTable);
-console.log("EncodedBytes:")
-console.log(huffmanEncode.encodedText)
-console.log("DecodedBytes:")
-console.log(huffman.decode(huffmanEncode.encodedText, huffmanEncode.huffmanTable, huffmanEncode.fill))

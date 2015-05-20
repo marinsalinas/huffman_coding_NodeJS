@@ -1,0 +1,29 @@
+{
+  "name": "huffman_chat",
+  "version": "1.0.0",
+  "description": "Huffman Encoding Chat with NodeJs",
+  "main": "index.js",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marinsalinas/huffman_coding_NodeJS.git"
+  },
+  "keywords": [
+    "chat",
+    "nodejs",
+    "huffman",
+    "cryptography"
+  ],
+  "author": "Marín Salinas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marinsalinas/huffman_coding_NodeJS/issues"
+  },
+  "homepage": "https://github.com/marinsalinas/huffman_coding_NodeJS#readme"
+}
