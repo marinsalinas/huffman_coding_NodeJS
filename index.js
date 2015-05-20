@@ -95,18 +95,13 @@ var huffman = (function(){
         addNode(queue, newNode);
       }
 
-      console.log(leafs);
+    var huffmanTable = _.map(leafs, function(leaf){
+          var key = leaf.key
+          var code = getCodeFromNode(leaf)
+          return [key, code]
+      })
 
-      /*_.each(leafs, function(leaf){
-          //console.log(leaf)
-          leaf.code = getCodeFromNode(leaf)
-          console.log(leaf.key + ": " + leaf.code);
-      })*/
-
-      //console.log(_.size(leafs))
-
-
-    //  return leafs;
+      return _.object(huffmanTable)
     }
 
     return self;
@@ -114,4 +109,11 @@ var huffman = (function(){
 
 var text = "abracadabra";
 console.log("Original Text:"+text)
-console.log(huffman.encode(text));
+console.log("huffman Table")
+var huffmanTable = huffman.encode(text)
+console.log(huffmanTable);
+var encodedText = text.split("").map(function(val,index){
+    return huffmanTable[val]
+}).join("")
+console.log("EncodedText:")
+console.log(encodedText)
