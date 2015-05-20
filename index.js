@@ -40,7 +40,7 @@ var huffman = (function(){
     function getQueue(leafs){
       return _.sortBy(leafs, function (elem) {
 		            return elem.num;
-              }).reverse();
+              });
     }
     /*Metodo: "getInternalNode" es donde comenzamos a crear la estructura de arbol
       La cual nos va a ayudar a ir encadenando cada nodo.
@@ -53,15 +53,30 @@ var huffman = (function(){
       return node
     }
 
-    function addNode(queue, newNode){
-      queue.push(newNode)
-      tempQ = getQueue(queue)
-      queue = tempQ;
+    function peek(queue){
+      return queue.splice(0, 1)[0]
     }
 
-    function getCodeFromNode(node code){
+    function addNode(queue, newNode){
+      var index = _.sortedIndex(queue, newNode, "num")
+      queue.splice(index, 0, newNode)
+    }
+
+    function getCodeFromNode(node, code){
       code = code || ""
-      
+
+      if(node.parent){
+        code += getCodeFromNode(node.parent, code)
+        if(node === node.parent.childNode0){
+          code += 0
+        }else{
+          code += 1
+        }
+      }
+
+      return code
+
+
     }
 
 
@@ -74,19 +89,24 @@ var huffman = (function(){
 
       //Este procedimiento se repite hasta que todos los nodos esten unidos
       while(_.size(queue) > 1){
-        var node0 = queue.pop()
-        var node1 = queue.pop()
+        var node0 = peek(queue)
+        var node1 = peek(queue)
         var newNode = getInternalNode(node0, node1);
         addNode(queue, newNode);
       }
 
-      _.each(leafs, function(leaf){
+      console.log(leafs);
+
+      /*_.each(leafs, function(leaf){
+          //console.log(leaf)
+          leaf.code = getCodeFromNode(leaf)
+          console.log(leaf.key + ": " + leaf.code);
+      })*/
+
+      //console.log(_.size(leafs))
 
 
-      })
-
-
-      return leafs;
+    //  return leafs;
     }
 
     return self;
