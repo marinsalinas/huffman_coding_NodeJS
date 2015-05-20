@@ -116,14 +116,12 @@ module.exports = (function(){
       var encodedText = text.split("").map(function(val){
           return hTable[val]
       }).join("")
+
       //Normalize String
-      console.log(encodedText)
       var fill = 8 - (encodedText.length % 8)
       if(fill == 8)
         fill = 0
 
-
-      console.log("Fill:"+fill)
       fill += encodedText.length
       var originalLen = encodedText.length
       while(encodedText.length < fill){
@@ -139,7 +137,7 @@ module.exports = (function(){
       var subfill = encodedText.length - fill
       encodedText = encodedText.substring(subfill)
       console.log(encodedText)
-      return getTextFromBinaryS(encodedText, huffmanTable)
+      return {text:getTextFromBinaryS(encodedText, huffmanTable), binText:encodedText}
     }
 
 
