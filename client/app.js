@@ -7,9 +7,10 @@ var myDataRef = new Firebase('https://huffmanchat.firebaseio.com/')
 $('#messageInput').keypress(function(e){
   if (e.keyCode == 13) {
         var name = $('#nameInput').val();
+        if(name == "" || name == null) return
         var text = $('#messageInput').val();
         var huffmanEncode = huffman.encode(text)
-         myDataRef.set({huf:huffmanEncode});
+         myDataRef.push(huffmanEncode);
         $('#messageInput').val('');
       }
 })
