@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Huffman Encoding Chat with NodeJs",
   "main": "index.js",
+  "scripts": {
+    "postinstall": "npm run build-js",
+    "build-js": "browserify client/huffman.js -o public/huffman.js",
+    "start": "node server.js"
+  },
   "dependencies": {
     "underscore": "^1.8.3"
   },
