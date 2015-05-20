@@ -127,8 +127,6 @@ var huffman = (function(){
       fill += encodedText.length
       var originalLen = encodedText.length
       while(encodedText.length < fill){
-        console.log("Enlen"+encodedText.length)
-        console.log("fill"+fill)
         encodedText = "0" + encodedText
       }
 
