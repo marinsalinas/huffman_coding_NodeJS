@@ -2,7 +2,7 @@
 /*Se declara un modulo en JavaScript  basandonos en:
   JavaScript Module Pattern - http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html
 */
-var huffman = (function(){
+module.exports = (function(){
     //Es nuestro objeto self hace la funcion de almacenar variables, objetos o funciones publicas
     //Parecido a 'this' en Java.
     var self = {}
