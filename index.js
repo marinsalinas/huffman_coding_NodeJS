@@ -75,17 +75,12 @@ var huffman = (function(){
       }
 
       return code
-
-
     }
-
-
 
     self.encode = function(text){
       var frequencies = getFrecuencies(text)
       var leafs = getLeafs(frequencies)
       var queue = getQueue(leafs)
-
 
       //Este procedimiento se repite hasta que todos los nodos esten unidos
       while(_.size(queue) > 1){
@@ -103,7 +98,6 @@ var huffman = (function(){
 
       return _.object(huffmanTable)
     }
-
     return self;
 }());
 
