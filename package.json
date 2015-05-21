@@ -11,8 +11,9 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "npm run build-js",
+    "postinstall": "npm run build-js-min",
     "build-js": "browserify client/app.js -o public/app.js",
+    "build-js-min":"browserify client/app.js | uglifyjs > public/app.js",
     "start": "node server.js"
   },
   "repository": {

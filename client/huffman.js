@@ -65,7 +65,7 @@ module.exports = (function(){
 
     function getCodeFromNode(node, code){
       code = code || ""
-
+      console.log(node)
       if(node.parent){
         code += getCodeFromNode(node.parent, code)
         if(node === node.parent.childNode0){
@@ -106,6 +106,9 @@ module.exports = (function(){
         addNode(queue, newNode);
       }
 
+      console.log(leafs)
+      console.log(queue)
+
       var huffmanTable = _.map(leafs, function(leaf){
           var key = leaf.key
           var code = getCodeFromNode(leaf)
@@ -116,6 +119,7 @@ module.exports = (function(){
       var encodedText = text.split("").map(function(val){
           return hTable[val]
       }).join("")
+      console.log(hTable)
 
       //Normalize String
       var fill = 8 - (encodedText.length % 8)
